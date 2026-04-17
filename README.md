@@ -1,5 +1,5 @@
 ========================================
-🚀 CLOUD DATA ENGINEERING PIPELINE
+🚀 CLOUD DATA PIPELINE PROJECT
 S3 → AWS GLUE ETL → DATA QUALITY FRAMEWORK (TERRAFORM)
 ========================================
 
@@ -7,107 +7,114 @@ S3 → AWS GLUE ETL → DATA QUALITY FRAMEWORK (TERRAFORM)
 ----------------------------------------
 This project implements a scalable cloud-based data engineering pipeline using AWS services and Infrastructure as Code (Terraform).
 
-It demonstrates how raw structured data is ingested, transformed, and validated using modern data engineering practices.
+It demonstrates an end-to-end data workflow including ingestion, transformation, validation, and storage using modern cloud data engineering practices.
 
-The pipeline is fully automated and follows a layered architecture:
+The pipeline follows a structured flow:
 Raw Data → ETL Processing → Data Validation → Trusted Dataset
 
 ----------------------------------------
 🏗️ ARCHITECTURE
 ----------------------------------------
 
-RAW DATA (Amazon S3)
+Raw Data (Amazon S3)
         ↓
-AWS GLUE ETL JOB
-    - Data Cleaning
-    - Standardization
-    - Feature Engineering
+AWS Glue ETL Job (Transformation Layer)
         ↓
-PROCESSED DATA (Amazon S3)
+Processed Data (Amazon S3)
         ↓
-AWS GLUE DATA QUALITY JOB
-    - Validation
-    - Schema checks
-    - Integrity verification
+AWS Glue Data Validation Job
         ↓
-FINAL TRUSTED DATASET
+Final Trusted Dataset
 
 ----------------------------------------
 📊 DATASET DESCRIPTION
 ----------------------------------------
 
-This dataset contains structured information about organizations.
+The dataset contains structured information about organizations, including:
 
-Fields include:
+- Organization ID
+- Name
+- Website
+- Country
+- Industry
+- Founded Year
+- Number of Employees
+- Description
 
-- Organization ID: Unique identifier
-- Name: Company name
-- Website: Official URL
-- Country: Location of operation
-- Industry: Business sector
-- Founded: Year of establishment
-- Number of Employees: Company size
-- Description: Business summary
-
-Purpose:
-The dataset is used to simulate real-world enterprise data for ETL processing, transformation, and validation in a cloud environment.
+This dataset is used to simulate real-world enterprise data processing scenarios in a cloud environment.
 
 ----------------------------------------
 🔄 ETL PROCESS
 ----------------------------------------
 
-The ETL layer transforms raw data into a clean and structured format suitable for analytics and downstream processing.
+The ETL layer is responsible for transforming raw data into a clean and analytics-ready format.
 
-Key operations:
+Key transformations include:
 
-- Standardization of column names into snake_case format
-- Removal of duplicate records
-- Handling of missing or null values in critical fields
-- Type casting for numerical and textual consistency
-- Feature engineering:
-    company_age = current_year - founded_year
-
-Result:
-A clean, enriched, and analysis-ready dataset stored in Amazon S3.
-
-----------------------------------------
-🧪 DATA QUALITY CHECKS
-----------------------------------------
-
-The data validation layer ensures the correctness and reliability of transformed data before it is used downstream.
-
-Validation includes:
-
-- Schema validation (required fields must exist)
-- Null value detection in critical columns
-- Dataset completeness check (non-empty validation)
-- Integrity verification after transformation
+- Standardize column names into snake_case format
+- Clean and trim text fields
+- Convert data types for consistency
+- Remove null and duplicate records
+- Feature engineering (company_age calculation)
 
 Result:
-A trusted and production-ready dataset for analytics or machine learning.
+A clean, structured dataset ready for analytics and downstream processing.
 
 ----------------------------------------
-⚙️ TECHNOLOGIES USED
+🧪 DATA VALIDATION
 ----------------------------------------
 
-- AWS S3 (Data Lake Storage)
-- AWS Glue (ETL with PySpark)
-- AWS IAM (Access Control & Security)
-- Terraform (Infrastructure as Code)
-- Python (Data Transformation Logic)
+The data validation layer ensures the integrity and reliability of transformed data.
+
+Validation steps include:
+
+- Check dataset completeness
+- Validate required columns
+- Ensure schema consistency
+- Prevent bad data propagation
+
+Result:
+A trusted dataset suitable for production use.
 
 ----------------------------------------
-🚀 BUSINESS VALUE
+🗄️ DATA FLOW
 ----------------------------------------
 
-This project demonstrates real-world data engineering capabilities:
+- Raw Layer: S3/raw/
+- Processed Layer: S3/processed/
 
-- End-to-end cloud ETL pipeline design
-- Scalable data lake architecture
-- Infrastructure automation using Terraform
-- Data quality enforcement before analytics
+This separation ensures clear data lineage and improves data governance.
+
+----------------------------------------
+🚀 DEPLOYMENT
+----------------------------------------
+
+Infrastructure is fully managed using Terraform.
+
+Commands:
+
+terraform init
+terraform plan
+terraform apply
+
+This ensures reproducible and scalable infrastructure provisioning.
+
+----------------------------------------
+📌 KEY FEATURES
+----------------------------------------
+
+- Fully automated cloud infrastructure
+- Modular ETL and validation jobs
+- Scalable AWS architecture design
 - Production-style workflow orchestration
 
-It reflects how modern companies build reliable and scalable data platforms.
+----------------------------------------
+🔮 FUTURE IMPROVEMENTS
+----------------------------------------
+
+- Add AWS Step Functions orchestration for workflow automation
+- Integrate CloudWatch monitoring and alerting
+- Implement CI/CD pipeline using GitHub Actions
+- Add advanced data quality framework (Great Expectations / Deequ)
 
 ========================================
