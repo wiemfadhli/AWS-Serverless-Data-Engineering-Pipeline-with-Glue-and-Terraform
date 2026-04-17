@@ -1,4 +1,6 @@
-🚀 Cloud Data Pipeline (AWS S3 + Glue + Terraform)
+📌 Project Overview
 
-A scalable data engineering pipeline built on AWS using Infrastructure as Code (Terraform).
-It ingests raw data, processes it using AWS Glue (PySpark), and validates data quality before storage.
+This project implements a scalable, production-style data engineering pipeline on AWS using Infrastructure as Code (Terraform).
+
+It demonstrates how raw data can be ingested, transformed, and validated in a fully automated cloud environment using modern data engineering practices.
+🏗️ Architecture
