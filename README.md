@@ -1,75 +1,81 @@
-📌 Project Overview
+========================================
+🚀 CLOUD DATA PIPELINE PROJECT
+S3 → AWS GLUE ETL → DATA QUALITY FRAMEWORK
+========================================
 
-This project implements a scalable, production-style data engineering pipeline on AWS using Infrastructure as Code (Terraform).
+📌 PROJECT OVERVIEW
+----------------------------------------
+This project implements a scalable AWS-based data engineering pipeline
+using Infrastructure as Code (Terraform).
 
-It demonstrates how raw data can be ingested, transformed, and validated in a fully automated cloud environment using modern data engineering practices.
+It processes raw data from S3, transforms it using AWS Glue (PySpark),
+and validates output using a data quality layer.
 
-🏗️ Architecture
+----------------------------------------
+🏗️ ARCHITECTURE
+----------------------------------------
 
-The pipeline follows a layered data flow approach:
+RAW DATA (S3)
+      ↓
+AWS GLUE ETL JOB
+  - Data Cleaning
+  - Standardization
+  - Feature Engineering
+      ↓
+PROCESSED DATA (S3)
+      ↓
+AWS GLUE VALIDATION JOB
+  - Data Quality Checks
+  - Schema Validation
+      ↓
+FINAL TRUSTED DATASET
 
-Raw Data (Amazon S3)
-        ↓
-AWS Glue ETL Job (Data Cleaning & Transformation)
-        ↓
-Processed Data (Amazon S3)
-        ↓
-AWS Glue Data Quality Job (Validation Layer)
-        ↓
-Trusted / Analytics-Ready Dataset
-⚙️ Core Capabilities
+----------------------------------------
+📊 DATASET
+----------------------------------------
+- Organization ID
+- Name
+- Website
+- Country
+- Industry
+- Founded Year
+- Number of Employees
+- Description
 
-✔ Automated data ingestion into S3 (Data Lake)
-✔ Data cleaning and transformation using AWS Glue (PySpark)
-✔ Feature engineering (e.g., company age calculation)
-✔ Schema standardization and data normalization
-✔ Data validation and quality checks
-✔ Fully automated infrastructure provisioning using Terraform
+----------------------------------------
+🔄 ETL PROCESS
+----------------------------------------
+✔ Clean column names (snake_case)
+✔ Remove duplicates
+✔ Handle null values
+✔ Type casting (numeric + string)
+✔ Feature engineering:
+    company_age = current_year - founded_year
 
-📊 Dataset Description
+----------------------------------------
+🧪 DATA QUALITY CHECKS
+----------------------------------------
+✔ Validate schema consistency
+✔ Check missing values
+✔ Ensure non-empty dataset
+✔ Verify transformation integrity
 
-The dataset contains structured information about organizations, including:
+----------------------------------------
+⚙️ TECHNOLOGIES USED
+----------------------------------------
+- AWS S3 (Data Lake)
+- AWS Glue (ETL - PySpark)
+- AWS IAM (Security)
+- Terraform (Infrastructure as Code)
+- Python (Data Processing)
 
-Organization ID
-Name
-Website
-Country
-Industry
-Founded Year
-Number of Employees
-Description
-🔄 ETL Process
+----------------------------------------
+🚀 PURPOSE
+----------------------------------------
+This project demonstrates real-world data engineering practices:
+- Cloud ETL pipeline design
+- Data lake architecture
+- Infrastructure automation
+- Data quality assurance
 
-The transformation layer includes:
-
-Standardization of column names (snake_case format)
-Removal of duplicates and null values
-Data type casting (numeric and string normalization)
-Feature engineering: company_age = current_year - founded_year
-🧪 Data Quality Validation
-
-The validation layer ensures:
-
-✔ Dataset completeness
-✔ Schema consistency
-✔ Required field validation
-✔ Post-transformation data integrity
-
-🧰 Technology Stack
-AWS S3 – Data Lake storage layer
-AWS Glue (PySpark) – ETL processing engine
-AWS IAM – Secure access management
-Terraform – Infrastructure as Code (IaC)
-Python – Data transformation logic
-🚀 Business Value
-
-This pipeline simulates real-world enterprise data systems and provides:
-
-Reliable and automated data processing
-Scalable cloud-based architecture
-Improved data quality and trust
-Reduced manual ETL operations
-Production-ready infrastructure design
-👨‍💻 Author
-
-Designed and implemented as a Cloud Data Engineering project focusing on AWS, ETL pipelines, and Infrastructure automation using Terraform.
+========================================
