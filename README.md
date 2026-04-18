@@ -1,120 +1,155 @@
-========================================
-🚀 CLOUD DATA PIPELINE PROJECT
-S3 → AWS GLUE ETL → DATA QUALITY FRAMEWORK (TERRAFORM)
-========================================
+🚀 Cloud Data Pipeline Project
+🪣 AWS S3 Data Lake → AWS Glue ETL → Data Quality Framework (Terraform)
+📌 Project Overview
 
-📌 PROJECT OVERVIEW
-----------------------------------------
 This project implements a scalable cloud-based data engineering pipeline using AWS services and Infrastructure as Code (Terraform).
 
-It demonstrates an end-to-end data workflow including ingestion, transformation, validation, and storage using modern cloud data engineering practices.
+It is designed around a modern Data Lake architecture on Amazon S3, where data flows through multiple layers of processing and validation.
 
-The pipeline follows a structured flow:
-Raw Data → ETL Processing → Data Validation → Trusted Dataset
+🔁 End-to-End Workflow:
 
-----------------------------------------
-🏗️ ARCHITECTURE
-----------------------------------------
+Raw Data (Data Lake) → ETL Processing → Data Validation → Trusted Analytics Dataset
 
-Raw Data (Amazon S3)
+The project simulates a production-grade data engineering system using cloud-native tools.
+
+🏗️ Architecture
+
+The system is built using a medallion-style data lake architecture on Amazon S3.
+
+🪣 Amazon S3 Data Lake
         ↓
-AWS Glue ETL Job (Transformation Layer)
+📥 Raw Layer (Bronze)
         ↓
-Processed Data (Amazon S3)
+🔄 AWS Glue ETL Job (Transformation)
         ↓
-AWS Glue Data Validation Job
+📦 Processed Layer (Silver)
         ↓
-Final Trusted Dataset
+🧪 AWS Glue Data Validation Job
+        ↓
+✅ Trusted Layer (Gold / Analytics Ready)
+🎯 Architecture Goals:
+Centralized Data Lake on S3
+Clear separation of Bronze / Silver / Gold layers
+Scalable ETL processing using AWS Glue
+Strong data quality enforcement
+Production-style data pipeline design
+🪣 Data Lake (Amazon S3)
 
-----------------------------------------
-📊 DATASET DESCRIPTION
-----------------------------------------
+Amazon S3 acts as the central Data Lake storage layer, storing all raw and processed data.
 
-The dataset contains structured information about organizations, including:
+📁 Data Lake Structure:
+s3://data-lake-bucket/
+│
+├── raw/         → Raw ingested data (Bronze layer)
+├── processed/   → Cleaned & transformed data (Silver layer)
+└── trusted/     → Final validated dataset (Gold layer)
+🎯 Why Data Lake?
+Stores structured & semi-structured data
+Cost-effective scalable storage
+Enables analytics and ML workloads
+Supports decoupled architecture
+📊 Dataset Description
 
-- Organization ID
-- Name
-- Website
-- Country
-- Industry
-- Founded Year
-- Number of Employees
-- Description
+The dataset represents enterprise organizational data, simulating real-world business systems used in analytics pipelines.
 
-This dataset is used to simulate real-world enterprise data processing scenarios in a cloud environment.
+It includes structured records used to demonstrate data ingestion, transformation, and validation workflows in a cloud Data Lake environment.
 
-----------------------------------------
-🔄 ETL PROCESS
-----------------------------------------
+📌 Schema Overview
 
-The ETL layer is responsible for transforming raw data into a clean and analytics-ready format.
+Each record contains:
 
-Key transformations include:
+Organization ID → Unique identifier
+Name → Company name
+Website → Official website URL
+Country → Location
+Industry → Business sector (IT, Finance, Healthcare, etc.)
+Founded Year → Year of establishment
+Number of Employees → Company size
+Description → Short business summary
+🎯 Dataset Purpose
 
-- Standardize column names into snake_case format
-- Clean and trim text fields
-- Convert data types for consistency
-- Remove null and duplicate records
-- Feature engineering (company_age calculation)
+This dataset is used to:
 
-Result:
-A clean, structured dataset ready for analytics and downstream processing.
+Simulate real-world Data Lake ingestion
+Practice AWS Glue ETL processing
+Apply data cleaning and transformation techniques
+Enforce data quality validation rules
+Produce analytics-ready trusted datasets
+📌 Data Characteristics
+Stored in Amazon S3 Data Lake
+Structured tabular format (CSV/JSON compatible)
+Includes realistic data issues:
+Missing values
+Duplicates
+Inconsistent formatting
+Designed for ETL and data quality practice
+🔄 ETL Process (AWS Glue)
 
-----------------------------------------
-🧪 DATA VALIDATION
-----------------------------------------
+AWS Glue processes raw data stored in the S3 Data Lake (Bronze layer).
 
-The data validation layer ensures the integrity and reliability of transformed data.
+⚙️ Transformations:
+Standardization of column names (snake_case)
+Data cleaning and trimming
+Type casting and normalization
+Removal of duplicates and nulls
+Feature engineering:
+company_age = current_year - founded_year
+📌 Output:
 
-Validation steps include:
+Cleaned dataset stored in S3 Silver layer (Processed zone).
 
-- Check dataset completeness
-- Validate required columns
-- Ensure schema consistency
-- Prevent bad data propagation
+🧪 Data Quality & Validation
 
-Result:
-A trusted dataset suitable for production use.
+A validation layer ensures only high-quality data reaches the final layer.
 
-----------------------------------------
-🗄️ DATA FLOW
-----------------------------------------
+✔️ Validation Checks:
+Schema validation
+Required field validation
+Null value detection
+Duplicate record filtering
+Data consistency checks
+📌 Output:
 
-- Raw Layer: S3/raw/
-- Processed Layer: S3/processed/
+Validated dataset stored in S3 Gold layer (Trusted zone).
 
-This separation ensures clear data lineage and improves data governance.
+🚀 Infrastructure as Code (Terraform)
 
-----------------------------------------
-🚀 DEPLOYMENT
-----------------------------------------
+All infrastructure is fully automated using Terraform.
 
-Infrastructure is fully managed using Terraform.
-
-Commands:
-
+📌 Provisioned Resources:
+Amazon S3 Data Lake (Raw / Processed / Trusted)
+AWS Glue ETL Jobs
+AWS Glue Validation Jobs
+IAM Roles & Policies
+⚙️ Deployment:
 terraform init
 terraform plan
 terraform apply
+🧰 Tools & Technologies
+☁️ Amazon S3 (Data Lake Storage)
+🔄 AWS Glue (ETL & Processing)
+🧪 Data Quality Validation Layer
+🏗️ Terraform (Infrastructure as Code)
+🐍 Python (ETL logic)
+📊 Cloud Data Engineering Best Practices
+📌 Key Features
+Full AWS Data Lake architecture (S3-based)
+Medallion data layering (Bronze / Silver / Gold)
+Automated ETL pipeline with AWS Glue
+Data validation before analytics consumption
+Infrastructure as Code using Terraform
+Production-style cloud data engineering workflow
+🔮 Future Improvements
+🔄 Add AWS Step Functions orchestration
+📊 Integrate CloudWatch monitoring & alerting
+⚡ CI/CD pipeline using GitHub Actions
+🧪 Add Great Expectations / AWS Deequ
+📚 Implement Data Catalog (AWS Glue Catalog)
+📈 Add BI layer (QuickSight dashboards)
+⭐ Conclusion
 
-This ensures reproducible and scalable infrastructure provisioning.
+This project demonstrates a modern AWS Data Lake architecture using S3, Glue, and Terraform, focusing on scalable ETL pipelines, data quality, and cloud-native design principles.
 
-----------------------------------------
-📌 KEY FEATURES
-----------------------------------------
 
-- Fully automated cloud infrastructure
-- Modular ETL and validation jobs
-- Scalable AWS architecture design
-- Production-style workflow orchestration
 
-----------------------------------------
-🔮 FUTURE IMPROVEMENTS
-----------------------------------------
 
-- Add AWS Step Functions orchestration for workflow automation
-- Integrate CloudWatch monitoring and alerting
-- Implement CI/CD pipeline using GitHub Actions
-- Add advanced data quality framework (Great Expectations / Deequ)
-
-========================================
