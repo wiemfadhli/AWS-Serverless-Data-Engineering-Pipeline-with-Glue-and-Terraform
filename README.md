@@ -31,6 +31,20 @@ The pipeline follows a **Medallion Data Lake Architecture (Bronze / Silver / Gol
 🧪 AWS Glue Data Validation Job
         ↓
 🏆 Gold Layer (Trusted / Analytics Ready)
+## 🪣 Data Lake (Amazon S3)
+
+Amazon S3 is used as a **central Data Lake storage system**, storing all raw and processed data in a scalable cloud architecture.
+
+---
+
+### 📁 Data Lake Structure
+
+```text
+s3://data-lake-bucket/
+│
+├── raw/         # 🥉 Bronze Layer → Raw ingested data
+├── processed/   # 🥈 Silver Layer → Cleaned & transformed data
+└── trusted/     # 🥇 Gold Layer → Final validated dataset
 
 
 
