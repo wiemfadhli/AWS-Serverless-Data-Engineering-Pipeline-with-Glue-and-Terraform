@@ -1,45 +1,46 @@
-# 🚀 Cloud Data Pipeline Project  
-### 🪣 AWS S3 Data Lake → AWS Glue ETL → Data Quality Framework (Terraform)
+# Cloud Data Pipeline Project
+## Project Overview
+This project implements a **scalable cloud-based data pipeline** using AWS services and Infrastructure as Code (Terraform).
 
----
+It follows a modern **Data Lake architecture**, where data is processed through multiple stages:
 
-## 📌 Project Overview
+The objective is to simulate a **production-grade data engineering system** using fully managed, cloud-native tools.
 
-This project implements a **scalable cloud-based data engineering pipeline** using AWS services and Infrastructure as Code (**Terraform**).
+## Architecture
+The pipeline is designed using the **Medallion Architecture (Bronze / Silver / Gold)**:
+## Dataset Description
+The dataset contains information about companies, including their identity, industry, and operational details.
 
-It is designed around a **modern AWS Data Lake architecture using Amazon S3**, where data flows through multiple processing layers:
+Each row represents a **single organisation**, and each column describes a specific attribute.
 
-> **Raw Data → ETL Processing → Data Validation → Trusted Dataset**
+### Columns Explanation
 
-The goal is to simulate a **production-grade data engineering system** using cloud-native tools.
+ - index: Unique row identifier for each record.
+ - organization_id: Unique identifier for each company (used as a primary key).
+ - name: Name of the organisation or company.
+ - website: Official website URL of the company.
+ - country: Country where the company is located.
+ - description: Short business description of the company.
+ - founded: Year the company was established.
+ - industry: Business sector in which the company operates.
+ -  number_of_employees: Total number of employees in the company.
+ - company_age: Age of the company (in years).
+ #### Example Record
+ index: 1 
+ organization_id: FAB0d41d5b5d22c
+  name: Ferrell LLC
+  country: Papua New Guinea 
+  industry: Plastics 
+  number_of_employees: 3498 
+  company_age: 36
 
----
+## Data Lake (Amazon S3)
 
-## 🏗️ Architecture
-
-The pipeline follows a **Medallion Data Lake Architecture (Bronze / Silver / Gold)**:
-
-```text
-🪣 Amazon S3 Data Lake
-        ↓
-📥 Bronze Layer (Raw Data)
-        ↓
-🔄 AWS Glue ETL Job (Transformation)
-        ↓
-📦 Silver Layer (Processed Data)
-        ↓
-🧪 AWS Glue Data Validation Job
-        ↓
-🏆 Gold Layer (Trusted / Analytics Ready)
-## 🪣 Data Lake (Amazon S3)
-
-Amazon S3 is used as a **central Data Lake storage system**, storing all raw and processed data in a scalable cloud architecture.
-
----
+Amazon S3 is used as a **centralised Data Lake storage system**, enabling scalable and durable storage for all pipeline data.
 
 ### 📁 Data Lake Structure
 
-```text
+
 s3://data-lake-bucket/
 │
 ├── raw/         # 🥉 Bronze Layer → Raw ingested data
@@ -47,6 +48,49 @@ s3://data-lake-bucket/
 └── trusted/     # 🥇 Gold Layer → Final validated dataset
 
 
+## ETL Pipeline
+
+### 1.  Data Ingestion (Bronze Layer)
+
+ - Raw data is ingested into the **S3 raw/** directory
+ - Data is stored in its original format (CSV/JSON)
+ 
+### 2. Data Transformation (Silver Layer)
+ - AWS Glue ETL jobs process and clean the data
+ - Transformations include:  Handling missing values , Data formatting,Schema standardisation
+### 3. Data Validation (Gold Layer)
+ - Data quality checks are applied using AWS Glue
+ - Ensures:Data consistency,No missing critical fields,Valid schema
+ 
+ ###  4.Infrastructure as Code (Terraform)
+All AWS resources are provisioned using **Terraform**, ensuring reproducibility and automation.
+ #### Managed Resources:
+ 
+ - S3 Buckets (Data Lake)
+ - AWS Glue Jobs
+ - IAM Roles & Policies
+  #### Tech Stack
+ - **Cloud:** AWS
+ - **Storage:** Amazon S3
+ - **ETL:** AWS Glue
+ - **IaC:** Terraform
+ - **Language:** PySpark 
+ #### How to Run
+ ###  1. Clone the repository
+git clone https://github.com/your-username/cloud-data-pipeline.git 
+cd cloud-data-pipeline
+### 2. Deploy infrastructure
+terraform init 
+terraform apply
+### 3. Upload data
+Upload files to: s3://data-lake-bucket/raw/
+
+
+
+ 
+
+ 
+ 
 
 
 
