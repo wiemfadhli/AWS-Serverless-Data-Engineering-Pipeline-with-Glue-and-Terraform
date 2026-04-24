@@ -1,4 +1,12 @@
-# Cloud Data Pipeline Project
+# ☁️ Cloud Data Pipeline Project
+
+![AWS](https://img.shields.io/badge/AWS-Cloud-orange)
+![S3](https://img.shields.io/badge/S3-Data%20Lake-blue)
+![Glue](https://img.shields.io/badge/AWS-Glue-PySpark-red)
+![Terraform](https://img.shields.io/badge/Terraform-IaC-purple)
+![ETL](https://img.shields.io/badge/ETL-Pipeline-green)
+
+---
 ## Project Overview
 This project implements a **scalable cloud-based data pipeline** using AWS services and Infrastructure as Code (Terraform).
 
